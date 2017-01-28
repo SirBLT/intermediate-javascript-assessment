@@ -113,25 +113,28 @@ function Burrito(percentLeft, eat) {
 // #8  ###################
 // # Prototype 1
 // Add a prototype function to the Array type that doubles the value of every item in the array and returns the modified array.
-
+// var arrr = [1, 2, 3]
 Array.prototype.doubler = function () {
   for (var i = 0; i < this.length; i++) {
     
-     return this(i) * 2;
+     this[i] = this[i] * 2;
   }
-  return Array;
+  return this;
 }
+
+ 
 
 // #9  ###################
 // # Prototype 2
 // Write a constructor function called chimichanga. Give it a property called percentLeft and set it equal to 100. Give it a prototype function called eat. When eat is invoked it uses context to subtract 20 from the percentLeft property on the chimichanga.
 
 function Chimichanga(percentLeft) {
-  percentLeft = 100;
+  this.percentLeft = 100;
 }
 Chimichanga.prototype.eat = function() {
   this.percentLeft = this.percentLeft - 20;
 }
+// var asdfljas;dklfj = new Chimichanga()
 
 // #10  ###################
 // # Closure 1
@@ -160,19 +163,19 @@ function sentenceMachine(partOne) {
 // ```
 
 function subway(personName) {
-  var personName = personName;
-  
-  return function addIngredient(item) {
-    var food = [];
-    var food = food.push(item);
-    var obj = {
+  var obj = {
       orderPerson: personName,
-      ingredients: food
-    };
+      ingredients: []
+    }
+  return function addIngredient(item) {
+    obj.ingredients.push(item)
     return obj;
   }
 }
-
+// var value = subway('BLT')
+// value('food thingy');
+// value('other food')
+// var order = value('lettuce');
 // #12  ###################
 // # Type checking
 // Write a function called compareValues that takes in 2 parameters.
@@ -181,9 +184,9 @@ function subway(personName) {
 // Otherwise return "Different values".
 
 function compareValues(param1, param2) {
-  if (typeof param1 === typeof param2 && param1 === param2) {
+  if (param1 === param2) {
     return 'Exact match';
-  } else if (typeof param1 !== typeof param2 && param1 === param2) {
+  } else if (param1 == param2) {
     return "Different types";
   } else {
     return 'Different values';
